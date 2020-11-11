@@ -13,9 +13,17 @@ class AsyncSinaQuote(async_quote.AsyncQuote):
     async def price_dict(self, codes: list) -> dict:
         res = {}
         tasks = []
+        session = aiohttp.ClientSession()
+
+        async def fetch_data_str(codes: str) -> str:
+            codes_str = ",".join(codes)
+            response = await session.get(f"{SINA_BASE_URL}{codes_str}", headers=HEADERS)
+            data_str = await response.text()
+            response.close()
+            return data_str
 
         async def small_price_dict(codes: list):
-            data_str = await self._fetch_data_str(codes)
+            data_str = await fetch_data_str(codes)
             data_list = data_str.strip().split("\n")
             for item in data_list:
                 s = item.split(",")
@@ -30,13 +38,5 @@ class AsyncSinaQuote(async_quote.AsyncQuote):
                 small_codes = codes[i : i + REQ_CODES_NUM_MAX]
             tasks.append(small_price_dict(small_codes))
         await asyncio.wait(tasks)
-        return res
-
-    async def _fetch_data_str(self, codes: str) -> str:
-        session = aiohttp.ClientSession()
-        codes_str = ",".join(codes)
-        response = await session.get(f"{SINA_BASE_URL}{codes_str}", headers=HEADERS)
-        data_str = await response.text()
-        response.close()
         await session.close()
-        return data_str
+        return res

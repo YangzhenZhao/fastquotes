@@ -1,3 +1,5 @@
+import os
+
 SINA_BASE_URL = "http://hq.sinajs.cn/list="
 TENCENT_BASE_URL = "http://qt.gtimg.cn/q="
 REQ_CODES_NUM_MAX = 300
@@ -9,3 +11,6 @@ HEADERS = {
         "Safari/537.36"
     ),
 }
+TRADE_DAYS_FILE_PATH = os.path.realpath(
+    os.path.join(os.path.dirname(__file__), "../static/trade_days.txt")
+)

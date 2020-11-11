@@ -1,0 +1,43 @@
+import asyncio
+
+import aiohttp
+
+from . import async_quote
+from .const import HEADERS, REQ_CODES_NUM_MAX, TENCENT_BASE_URL
+
+
+class AsyncTencentQuote(async_quote.AsyncQuote):
+    def __init__(self) -> None:
+        pass
+
+    async def price_dict(self, codes: list) -> dict:
+        res = {}
+        tasks = []
+
+        async def small_price_dict(codes: list):
+            data_str = await self._fetch_data_str(codes)
+            print(data_str)
+            data_list = data_str.strip().split("\n")
+            for item in data_list:
+                s = item.split("~")
+                code, price = s[0].partition("=")[0][-6:], float(s[3])
+                res[code] = price
+
+        codes_len = len(codes)
+        for i in range(0, codes_len, REQ_CODES_NUM_MAX):
+            if i + REQ_CODES_NUM_MAX >= codes_len:
+                small_codes = codes[i:]
+            else:
+                small_codes = codes[i : i + REQ_CODES_NUM_MAX]
+            tasks.append(small_price_dict(small_codes))
+        await asyncio.wait(tasks)
+        return res
+
+    async def _fetch_data_str(self, codes: str) -> str:
+        session = aiohttp.ClientSession()
+        codes_str = ",".join(codes)
+        response = await session.get(f"{TENCENT_BASE_URL}{codes_str}", headers=HEADERS)
+        data_str = await response.text()
+        response.close()
+        await session.close()
+        return data_str

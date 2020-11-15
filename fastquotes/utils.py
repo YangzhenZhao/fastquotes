@@ -85,3 +85,7 @@ def parse_out_sina_tick_dict(msg: str) -> dict:
     except IndexError:
         return None
     return res
+
+
+def exchange_prefix(code: str) -> str:
+    return "sh" if code.startswith("6") else "sz"

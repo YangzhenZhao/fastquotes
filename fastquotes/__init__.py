@@ -7,5 +7,5 @@ from .stock_list import async_stock_list, stock_list, stock_list_sh, stock_list_
 from .trade_calendar import TradeCalendar
 from .utils import exchange_prefix
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __author__ = "nocilantro"

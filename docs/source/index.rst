@@ -11,3 +11,6 @@ Welcome to fastquotes's documentation!
    :caption: Contents:
 
    introduction
+   async_quotes
+   stock_list
+   utils

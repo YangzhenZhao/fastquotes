@@ -6,6 +6,11 @@
 
 `pip install fastquotes`   
 
+
+安装最新版本:   
+假设最新版本为`0.0.2`, 则执行`pip install fastquotes==0.0.2`     
+
+
 ## 示例
 
 ```py

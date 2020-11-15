@@ -16,7 +16,7 @@ async def sina_run():
 
 
 async def qq_run():
-    quotes = fastquotes.AsyncSinaQuote()
+    quotes = fastquotes.AsyncTencentQuote()
     ticks = await quotes.tick_dict(codes)
     print(len(ticks))
 

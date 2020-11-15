@@ -76,10 +76,6 @@ def stock_list_sz():
 
 
 def stock_list_sh():
-    """
-    主板A股代码列表
-    """
-
     def req_list(stock_type):
         params_sh["stockType"] = stock_type
         response = requests.get(url_sh, params=params_sh, headers=headers_sh)

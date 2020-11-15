@@ -12,14 +12,14 @@ def parse_out_tencent_tick_dict(msg: str) -> dict:
         res = {
             "time": field_list[30][8:],
             "name": field_list[1],
-            'code': field_list[2],
+            "code": field_list[2],
             "current_price": float(field_list[3]),
             "pre_close": float(field_list[4]),
             "open": float(field_list[5]),
             "high": float(field_list[33]),
             "low": float(field_list[34]),
-            "total_amount": float(field_list[37]),    # 成交总额(万元)
-            "total_vol": float(field_list[6]),          # 成交总量(手)
+            "total_amount": float(field_list[37]),  # 成交总额(万元)
+            "total_vol": float(field_list[6]),  # 成交总量(手)
             "bid1": float(field_list[9]),
             "bid1_vol": int(field_list[10]),
             "bid2": float(field_list[11]),
@@ -45,6 +45,7 @@ def parse_out_tencent_tick_dict(msg: str) -> dict:
         return None
     return res
 
+
 def parse_out_sina_tick_dict(msg: str) -> dict:
     field_list = msg.split(",")
     try:
@@ -52,14 +53,14 @@ def parse_out_sina_tick_dict(msg: str) -> dict:
         res = {
             "time": field_list[31].replace(":", ""),
             "name": code_name_part[2],
-            'code': code_name_part[0][-6:],
+            "code": code_name_part[0][-6:],
             "current_price": float(field_list[3]),
             "pre_close": float(field_list[2]),
             "open": float(field_list[1]),
             "high": float(field_list[4]),
             "low": float(field_list[5]),
-            "total_amount": float(field_list[9]),    # 成交总额(万元)
-            "total_vol": float(field_list[8]),          # 成交总量(手)
+            "total_amount": float(field_list[9]),  # 成交总额(万元)
+            "total_vol": float(field_list[8]),  # 成交总量(手)
             "bid1_vol": int(field_list[10]),
             "bid1": float(field_list[11]),
             "bid2_vol": int(field_list[12]),

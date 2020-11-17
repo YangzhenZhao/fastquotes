@@ -13,6 +13,8 @@
 直接安装: `pip install quotes`       
 安装最新版本(推荐): `pip install quotes==最新版本`
 
+卸载: `pip uninstall fastquotes -y`
+
 ### Examples
 
 ```py

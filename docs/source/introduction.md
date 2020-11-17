@@ -1,14 +1,11 @@
 # 概览
 
-使用 fastquotes 快速获取基本的行情数据，支持异步    
+使用 fastquotes 快速获取基本的行情数据(多线程或者异步)
 
 ## 安装
 
-`pip install fastquotes`   
-
-
-安装最新版本:   
-假设最新版本为`0.0.2`, 则执行`pip install fastquotes==0.0.2`     
+`pip install fastquotes`     
+安装最新版: `pip install fastquotes==最新版本号`
 
 
 ## 示例

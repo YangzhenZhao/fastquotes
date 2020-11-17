@@ -64,7 +64,7 @@ class AsyncTencentQuote(async_quote.AsyncQuote):
             await asyncio.wait(tasks)
             return res
 
-    async def _fetch_data_str(self, session, codes: str) -> str:
+    async def _fetch_data_str(self, session, codes: list) -> str:
         codes_str = ",".join(codes)
         async with await session.get(
             f"{TENCENT_BASE_URL}{codes_str}", headers=HEADERS

@@ -6,6 +6,8 @@ import aiohttp
 import pandas as pd
 import requests
 
+from fastquotes.utils import exchange_prefix
+
 url_sh = "http://query.sse.com.cn/security/stock/getStockListData.do"
 headers_sh = {
     "Host": "query.sse.com.cn",
@@ -39,6 +41,11 @@ params_sz = {
 }
 
 
+async def async_exchange_stock_list():
+    res_list = await async_stock_list()
+    return [f"{exchange_prefix(code)}{code}" for code in res_list]
+
+
 async def async_stock_list():
     res_list = []
     async with aiohttp.ClientSession() as session:
@@ -64,18 +71,23 @@ async def async_stock_list():
         return res_list
 
 
-def stock_list():
+def exchange_stock_list() -> list:
+    res_list = stock_list()
+    return [f"{exchange_prefix(code)}{code}" for code in res_list]
+
+
+def stock_list() -> list:
     return stock_list_sz() + stock_list_sh()
 
 
-def stock_list_sz():
+def stock_list_sz() -> list:
     r = requests.get(url_sz, params=params_sz)
     df = pd.read_excel(BytesIO(r.content))
     df["A股代码"] = df["A股代码"].astype(str).str.zfill(6)
     return list(df["A股代码"].values)
 
 
-def stock_list_sh():
+def stock_list_sh() -> list:
     def req_list(stock_type):
         params_sh["stockType"] = stock_type
         response = requests.get(url_sh, params=params_sh, headers=headers_sh)

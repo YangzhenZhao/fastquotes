@@ -11,6 +11,8 @@ Welcome to fastquotes's documentation!
    :caption: Contents:
 
    introduction
+   quotes
    async_quotes
+   tick
    stock_list
    utils

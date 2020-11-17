@@ -17,3 +17,7 @@ def test_pre_trade_date():
     assert pre_date == "20201112"
     pre_date = calendar.pre_trade_date("20201004")
     assert pre_date == "20200930"
+    pre_date = calendar.pre_trade_date("19901219")
+    assert pre_date is None
+    pre_date = calendar.pre_trade_date("19901214")
+    assert pre_date is None

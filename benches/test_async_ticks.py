@@ -4,8 +4,7 @@ import pytest
 
 import fastquotes
 
-codes = fastquotes.stock_list()
-codes = [f"{fastquotes.exchange_prefix(c)}{c}" for c in codes]
+codes = fastquotes.exchange_stock_list()
 loop = asyncio.get_event_loop()
 
 

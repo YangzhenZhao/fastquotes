@@ -66,7 +66,7 @@ class AsyncSinaQuote(async_quote.AsyncQuote):
 
         return res
 
-    async def _fetch_data_str(self, session, codes: str) -> str:
+    async def _fetch_data_str(self, session, codes: list) -> str:
         codes_str = ",".join(codes)
         async with session.get(
             f"{SINA_BASE_URL}{codes_str}", headers=HEADERS

@@ -1,6 +1,6 @@
 # 异步获取行情
 
-### AsyncQuote
+### AsyncSinaQuote/AsyncTencentQuote
 
 ```py
 import fastquotes
@@ -8,8 +8,7 @@ import asyncio
 
 # quote = fastquotes.AsyncTencentQuote()
 quote = fastquotes.AsyncSinaQuote()
-codes = fastquotes.stock_list()
-codes = [f"{fastquotes.exchange_prefix(c)}{c}" for c in codes]
+codes = fastquotes.exchange_stock_list()
 
 async def run():
     tick_dict = await quote.tick_dict(codes)

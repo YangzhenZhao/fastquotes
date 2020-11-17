@@ -8,5 +8,5 @@ class Quote(metaclass=abc.ABCMeta):
         pass
 
     @abstractmethod
-    async def tick_dict(self, codes: list) -> dict:
+    def tick_dict(self, codes: list) -> dict:
         pass

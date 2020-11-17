@@ -6,13 +6,15 @@
 
 # -- Path setup --------------------------------------------------------------
 
-import recommonmark  # noqa
-
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
+import os
+import re
+
+import recommonmark  # noqa
+
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 import sphinx_rtd_theme
@@ -25,7 +27,12 @@ copyright = "2020, nocilantro"
 author = "nocilantro"
 
 # The full version, including alpha/beta/rc tags
-release = "0.0.2"
+version_path = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "../..", "fastquotes", "__init__.py")
+)
+with open(version_path) as f:
+    content = f.read()
+    release = re.search('__version__ = "(.*?)"', content).group(1)
 
 
 # -- General configuration ---------------------------------------------------

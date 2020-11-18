@@ -8,7 +8,7 @@ import asyncio
 
 # quote = fastquotes.AsyncTencentQuote()
 quote = fastquotes.AsyncSinaQuote()
-codes = fastquotes.exchange_stock_list()
+codes = fastquotes.stock_list()
 
 async def run():
     tick_dict = await quote.tick_dict(codes)
@@ -22,6 +22,6 @@ loop.run_until_complete(run())
 输出结果:
 
 ```
-4072
-{'time': '150003', 'name': '平安银行', 'code': '000001', 'current_price': 17.18, 'pre_close': 17.66, 'open': 17.42, 'high': 17.47, 'low': 16.69, 'total_amount': 2191492021.21, 'total_vol': 128918923.0, 'bid1_vol': 54800, 'bid1': 17.17, 'bid2_vol': 50600, 'bid2': 17.16, 'bid3_vol': 27749, 'bid3': 17.15, 'bid4_vol': 62300, 'bid4': 17.14, 'bid5_vol': 41300, 'bid5': 17.13, 'ask1_vol': 125226, 'ask1': 17.18, 'ask2_vol': 346501, 'ask2': 17.19, 'ask3_vol': 27749, 'ask3': 17.2, 'ask4_vol': 62300, 'ask4': 17.21, 'ask5_vol': 69300, 'ask5': 17.22}
+4074
+{'time': '150003', 'name': '平安银行', 'code': '000001', 'current_price': 18.46, 'pre_close': 17.83, 'open': 17.78, 'high': 18.5, 'low': 17.75, 'total_amount': 2508632642.49, 'total_vol': 137340072.0, 'bid1_vol': 125782, 'bid1': 18.45, 'bid2_vol': 42000, 'bid2': 18.44, 'bid3_vol': 15240, 'bid3': 18.43, 'bid4_vol': 31100, 'bid4': 18.42, 'bid5_vol': 21200, 'bid5': 18.41, 'ask1_vol': 404680, 'ask1': 18.46, 'ask2_vol': 285665, 'ask2': 18.47, 'ask3_vol': 15240, 'ask3': 18.48, 'ask4_vol': 31100, 'ask4': 18.49, 'ask5_vol': 2538805, 'ask5': 18.5}
 ```

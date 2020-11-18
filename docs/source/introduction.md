@@ -5,8 +5,17 @@
 ## 安装
 
 `pip install fastquotes`     
+
 安装最新版: `pip install fastquotes==最新版本号`
 
+验证安装:
+
+```py
+In [1]: import fastquotes
+
+In [2]: fastquotes.__version__
+Out[2]: 'x.y.z'
+```
 
 ## 示例
 

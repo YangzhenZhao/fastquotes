@@ -89,3 +89,15 @@ def parse_out_sina_tick_dict(msg: str) -> dict:
 
 def exchange_prefix(code: str) -> str:
     return "sh" if code.startswith("6") else "sz"
+
+
+def format_stock_code(code: str) -> str:
+    if code[0].isdigit():
+        return exchange_prefix(code) + code
+    return code
+
+
+def format_stock_codes(codes: list) -> list:
+    if codes[0][0].isdigit():
+        return [exchange_prefix(code) + code for code in codes]
+    return codes

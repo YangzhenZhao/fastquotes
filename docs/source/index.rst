@@ -15,4 +15,5 @@ Welcome to fastquotes's documentation!
    async_quotes
    tick
    stock_list
+   calendar
    utils

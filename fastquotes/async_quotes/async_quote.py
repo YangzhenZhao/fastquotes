@@ -1,5 +1,6 @@
 import abc
 import asyncio
+from typing import Optional
 
 import aiohttp
 
@@ -22,7 +23,7 @@ class AsyncQuote(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def parse_out_tick_dict(self, msg: str) -> dict:
+    def parse_out_tick_dict(self, msg: str) -> Optional[dict]:
         pass
 
     async def tick_dict(self, codes: list) -> dict:
@@ -52,32 +53,12 @@ class AsyncQuote(metaclass=abc.ABCMeta):
         return res
 
     async def price_dict(self, codes: list) -> dict:
-        format_codes = format_stock_codes(codes)
-        res = {}
-        tasks = []
-
-        async with aiohttp.ClientSession() as session:
-
-            async def small_price_dict(small_codes: list):
-                data_str = await self._fetch_data_str(session, small_codes)
-                data_list = data_str.strip().split("\n")
-                for item in data_list:
-                    s = item.split(self.split_char)
-                    try:
-                        code, price = s[2], float(s[3])
-                    except IndexError:
-                        continue
-                    res[code] = price
-
-            codes_len = len(format_codes)
-            for i in range(0, codes_len, REQ_CODES_NUM_MAX):
-                if i + REQ_CODES_NUM_MAX >= codes_len:
-                    small_codes = format_codes[i:]
-                else:
-                    small_codes = format_codes[i : i + REQ_CODES_NUM_MAX]
-                tasks.append(small_price_dict(small_codes))
-            await asyncio.wait(tasks)
-            return res
+        tick_dict = await self.tick_dict(codes)
+        res_dict = {}
+        for code, tick in tick_dict.items():
+            if "current_price" in tick:
+                res_dict[code] = tick["current_price"]
+        return res_dict
 
     async def _fetch_data_str(self, session, codes: list) -> str:
         codes_str = ",".join(codes)

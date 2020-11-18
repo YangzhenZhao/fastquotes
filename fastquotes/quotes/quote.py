@@ -1,5 +1,6 @@
 import abc
 import concurrent.futures
+from typing import Optional
 
 import requests
 
@@ -27,7 +28,7 @@ class Quote(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def parse_out_tick_dict(self, msg: str) -> dict:
+    def parse_out_tick_dict(self, msg: str) -> Optional[dict]:
         pass
 
     def current_price(self, code: str) -> float:

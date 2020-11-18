@@ -1,3 +1,5 @@
+from typing import Optional
+
 from .const import TRADE_DAYS_FILE_PATH
 
 
@@ -6,7 +8,7 @@ def read_trade_days():
         return f.read().split(",")
 
 
-def parse_out_tencent_tick_dict(msg: str) -> dict:
+def parse_out_tencent_tick_dict(msg: str) -> Optional[dict]:
     field_list = msg.split("~")
     try:
         res = {
@@ -46,7 +48,7 @@ def parse_out_tencent_tick_dict(msg: str) -> dict:
     return res
 
 
-def parse_out_sina_tick_dict(msg: str) -> dict:
+def parse_out_sina_tick_dict(msg: str) -> Optional[dict]:
     field_list = msg.split(",")
     try:
         code_name_part = field_list[0].partition('="')

@@ -1,6 +1,35 @@
 # 异步获取行情
 
-### AsyncSinaQuote/AsyncTencentQuote
+## AsyncSinaQuote/AsyncTencentQuote
+
+
+### 获取多支股票的当前价格
+
+```py
+import fastquotes
+import asyncio
+
+# quote = fastquotes.AsyncTencentQuote()
+quote = fastquotes.AsyncSinaQuote()
+codes = fastquotes.stock_list()
+
+async def run():
+    tick_dict = await quote.price_dict(codes)
+    print(len(tick_dict))
+    print(tick_dict["000001"])
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(run())
+```
+
+输出结果:
+
+```
+4074
+18.46
+```
+
+### 获取多支股票的 tick
 
 ```py
 import fastquotes

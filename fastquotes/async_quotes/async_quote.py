@@ -60,6 +60,30 @@ class AsyncQuote(metaclass=abc.ABCMeta):
                 res_dict[code] = tick["current_price"]
         return res_dict
 
+    async def pre_close_dict(self, codes: list) -> dict:
+        tick_dict = await self.tick_dict(codes)
+        res_dict = {}
+        for code, tick in tick_dict.items():
+            if "pre_close" in tick:
+                res_dict[code] = tick["pre_close"]
+        return res_dict
+
+    async def open_dict(self, codes: list) -> dict:
+        tick_dict = await self.tick_dict(codes)
+        res_dict = {}
+        for code, tick in tick_dict.items():
+            if "open" in tick:
+                res_dict[code] = tick["open"]
+        return res_dict
+
+    async def total_vol_dict(self, codes: list) -> dict:
+        tick_dict = await self.tick_dict(codes)
+        res_dict = {}
+        for code, tick in tick_dict.items():
+            if "total_vol" in tick:
+                res_dict[code] = tick["total_vol"]
+        return res_dict
+
     async def _fetch_data_str(self, session, codes: list) -> str:
         codes_str = ",".join(codes)
         async with await session.get(

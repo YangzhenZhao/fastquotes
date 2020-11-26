@@ -14,5 +14,5 @@ from .stock_list import (
 from .trade_calendar import TradeCalendar
 from .utils import exchange_prefix
 
-__version__ = "0.0.5"
+__version__ = "0.0.6"
 __author__ = "nocilantro"

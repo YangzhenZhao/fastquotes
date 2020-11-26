@@ -1,5 +1,4 @@
-[![Documentation Status](https://readthedocs.org/projects/fastquotes/badge/?version=latest)](https://fastquotes.readthedocs.io/zh/latest/?badge=latest)
-
+[![PyPI](https://img.shields.io/pypi/v/fastquotes.svg)](https://pypi.org/project/fastquotes/)  [![Documentation Status](https://readthedocs.org/projects/fastquotes/badge/?version=latest)](https://fastquotes.readthedocs.io/zh/latest/?badge=latest)
 
 ### FastQuotes
 

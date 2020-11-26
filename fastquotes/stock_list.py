@@ -1,4 +1,5 @@
 import asyncio
+import concurrent.futures
 import json
 from io import BytesIO
 
@@ -77,7 +78,10 @@ def exchange_stock_list() -> list:
 
 
 def stock_list() -> list:
-    return stock_list_sz() + stock_list_sh()
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+        fut1 = executor.submit(stock_list_sz)
+        fut2 = executor.submit(stock_list_sh)
+    return fut1.result() + fut2.result()
 
 
 def stock_list_sz() -> list:

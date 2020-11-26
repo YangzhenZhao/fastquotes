@@ -37,9 +37,45 @@ class Quote(metaclass=abc.ABCMeta):
     def pre_close(self, code: str) -> float:
         return float(self._detail_list(code)[self.pclose_field_id])
 
-    def _detail_list(self, code: str) -> list:
-        format_code = format_stock_code(code)
-        return self._fetch_data_str(format_code).split(self.split_char)
+    def tick(self, code: str) -> Optional[dict]:
+        code = format_stock_code(code)
+        tick_dict = self.tick_dict([code])
+        tick_list = list(tick_dict.items())
+        if not tick_list or not tick_list[0][1]:
+            return None
+        return tick_list[0][1]
+
+    def price_dict(self, codes: list) -> dict:
+        tick_dict = self.tick_dict(codes)
+        res_dict = {}
+        for code, tick in tick_dict.items():
+            if "current_price" in tick:
+                res_dict[code] = tick["current_price"]
+        return res_dict
+
+    def pre_close_dict(self, codes: list) -> dict:
+        tick_dict = self.tick_dict(codes)
+        res_dict = {}
+        for code, tick in tick_dict.items():
+            if "pre_close" in tick:
+                res_dict[code] = tick["pre_close"]
+        return res_dict
+
+    def open_dict(self, codes: list) -> dict:
+        tick_dict = self.tick_dict(codes)
+        res_dict = {}
+        for code, tick in tick_dict.items():
+            if "open" in tick:
+                res_dict[code] = tick["open"]
+        return res_dict
+
+    def total_vol_dict(self, codes: list) -> dict:
+        tick_dict = self.tick_dict(codes)
+        res_dict = {}
+        for code, tick in tick_dict.items():
+            if "total_vol" in tick:
+                res_dict[code] = tick["total_vol"]
+        return res_dict
 
     def tick_dict(self, codes: list) -> dict:
         format_codes = format_stock_codes(codes)
@@ -64,6 +100,10 @@ class Quote(metaclass=abc.ABCMeta):
                     small_codes = format_codes[i : i + REQ_CODES_NUM_MAX]
                 executor.submit(small_price_dict, small_codes)
         return res
+
+    def _detail_list(self, code: str) -> list:
+        format_code = format_stock_code(code)
+        return self._fetch_data_str(format_code).split(self.split_char)
 
     def _fetch_data_str(self, code: str) -> str:
         response = self._session.get(self.base_url + code, headers=HEADERS)

@@ -11,6 +11,7 @@ from .stock_list import (
     stock_list_sh,
     stock_list_sz,
 )
+from .to_hans import to_hans, to_hans_amount
 from .trade_calendar import TradeCalendar
 from .utils import exchange_prefix
 

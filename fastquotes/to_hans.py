@@ -5,7 +5,8 @@ amount_hans_units_map = ["仟", "佰", "拾", ""]
 amount_hans_float_units_map = ["角", "分", "厘", "毫"]
 
 
-def to_hans(s: str) -> str:
+def to_hans(s) -> str:
+    s = str(s)
     point_pos = s.find(".")
     if point_pos == -1:
         int_part, float_part = s, ""
@@ -22,7 +23,8 @@ def to_hans(s: str) -> str:
     return hans
 
 
-def to_hans_amount(s: str) -> str:
+def to_hans_amount(s) -> str:
+    s = str(s)
     point_pos = s.find(".")
     if point_pos == -1:
         int_part, float_part = s, ""
@@ -52,6 +54,8 @@ def _convert_4_digit(x: str, num_map: list, units_map: list) -> str:
                 res += "零"
         else:
             res += num_map[int(x[i])] + units_map[i]
+    if len(res) > 1 and res[-1] == '零':
+        res = res[:-1]
     return res
 
 

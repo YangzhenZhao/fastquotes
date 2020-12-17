@@ -16,4 +16,5 @@ Welcome to fastquotes's documentation!
    tick
    stock_list
    calendar
+   hans
    utils

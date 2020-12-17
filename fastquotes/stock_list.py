@@ -4,8 +4,8 @@ import json
 from io import BytesIO
 
 import aiohttp
-import pandas as pd
 import requests
+import xlrd
 
 from fastquotes.utils import exchange_prefix
 
@@ -63,9 +63,8 @@ async def async_stock_list():
         async def req_sz_list():
 
             async with session.get(url_sz, params=params_sz) as r:
-                df = pd.read_excel(BytesIO(await r.read()))
-                df["A股代码"] = df["A股代码"].astype(str).str.zfill(6)
-                res_list.extend(list(df["A股代码"].values))
+                sheet = xlrd.open_workbook(file_contents=(await r.read())).sheet_by_index(0)
+                res_list.extend([c.value for c in sheet.col(4)[1:]])
 
         await asyncio.wait([req_sh_list(1), req_sh_list(8), req_sz_list()])
 
@@ -86,9 +85,8 @@ def stock_list() -> list:
 
 def stock_list_sz() -> list:
     r = requests.get(url_sz, params=params_sz)
-    df = pd.read_excel(BytesIO(r.content))
-    df["A股代码"] = df["A股代码"].astype(str).str.zfill(6)
-    return list(df["A股代码"].values)
+    sheet = xlrd.open_workbook(file_contents=r.content).sheet_by_index(0)
+    return [c.value for c in sheet.col(4)[1:]]
 
 
 def stock_list_sh() -> list:

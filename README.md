@@ -6,6 +6,8 @@
 
 <a href="https://fastquotes.readthedocs.io/zh/latest/" target="_blank">中文文档</a>
 
+**注意**:   
+获取股票列表的接口容易**被封 IP**，请提前做好应对措施!!
 
 ### Installation
 

@@ -7,7 +7,7 @@ def test_to_hans():
     assert to_hans("606015703") == "六亿零六百零一万五千七百零三"
     assert to_hans("606015703.10357") == "六亿零六百零一万五千七百零三点一零三五七"
     assert to_hans("6801234") == "六百八十万一千二百三十四"
-    
+
 
 def test_to_hans_amount():
     assert to_hans_amount("18446744073.230") == "壹佰捌拾肆亿肆仟陆佰柒拾肆万肆仟零柒拾叁元贰角叁分"

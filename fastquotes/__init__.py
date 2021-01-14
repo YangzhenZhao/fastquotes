@@ -1,5 +1,6 @@
 from fastquotes.async_quotes.async_sina import AsyncSinaQuote
 from fastquotes.async_quotes.async_tencent import AsyncTencentQuote
+from fastquotes.fund import fund_list
 from fastquotes.quotes.sina import SinaQuote
 from fastquotes.quotes.tencent import TencentQuote
 

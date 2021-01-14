@@ -54,7 +54,7 @@ def _convert_4_digit(x: str, num_map: list, units_map: list) -> str:
                 res += "零"
         else:
             res += num_map[int(x[i])] + units_map[i]
-    if len(res) > 1 and res[-1] == '零':
+    if len(res) > 1 and res[-1] == "零":
         res = res[:-1]
     return res
 

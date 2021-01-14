@@ -10,8 +10,8 @@ def get_version():
         return re.search('__version__ = "(.*?)"', content).group(1)
 
 
-def strip_comments(l):
-    return l.split("#", 1)[0].strip()
+def strip_comments(comments):
+    return comments.split("#", 1)[0].strip()
 
 
 def reqs(*f):
@@ -19,8 +19,8 @@ def reqs(*f):
         filter(
             None,
             [
-                strip_comments(l)
-                for l in open(os.path.join(os.getcwd(), *f)).readlines()
+                strip_comments(s)
+                for s in open(os.path.join(os.getcwd(), *f)).readlines()
             ],
         )
     )

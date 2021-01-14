@@ -42,6 +42,12 @@ def parse_out_tencent_tick_dict(msg: str) -> Optional[dict]:
             "ask4_vol": int(field_list[26]) * 100,
             "ask5": float(field_list[27]),
             "ask5_vol": int(field_list[28]) * 100,
+            "up_limit": float(field_list[47]),
+            "down_limit": float(field_list[48]),
+            "price_change": float(field_list[31]),
+            "pct_change": float(field_list[32]),
+            "flow_market_value": float(field_list[44]),
+            "total_market_value": float(field_list[45]),
         }
     except IndexError:
         return None

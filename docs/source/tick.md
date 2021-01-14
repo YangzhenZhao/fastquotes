@@ -44,11 +44,11 @@
     'time': '161503', 
     'name': '平安银行', 
     'code': '000001', 
-    'current_price': 17.83,        # 当前价格(单位:元)      类型:float
-    'pre_close': 17.37,            # 昨收价格(单位:元)      类型:float
+    'current_price': 20.03,        # 当前价格(单位:元)      类型:float
+    'pre_close': 20.7,            # 昨收价格(单位:元)      类型:float
     'open': 17.38,                 # 今日开盘价格(单位:元)   类型:float
-    'high': 17.93,                 # 最高价格(单位:元)      类型:float
-    'low': 17.25,                  # 最低价格(单位:元)      类型:float
+    'high': 20.89,                 # 最高价格(单位:元)      类型:float
+    'low': 19.95,                  # 最低价格(单位:元)      类型:float
     'total_amount': 1509510000.0,  # 成交总金额(单位:元)    类型:float
     'total_vol': 85293100.0,       # 成交总量(单位:股)      类型:float
     'bid1': 17.82,                 # 买一价格(单位:元)      类型:float
@@ -71,5 +71,11 @@
     'ask4_vol': 57000, 
     'ask5': 17.87, 
     'ask5_vol': 80400
+    'up_limit': 22.77,             # 涨停价(单位:元)        类型:float
+    'down_limit': 18.63,           # 跌停价(单位:元)        类型:float
+    'price_change': -0.67,         # 价格改变(单位:元)       类型:float
+    'pct_change': -3.24,           # 涨跌幅(单位:%)         类型:float
+    'flow_market_value': 3886.97,  # 流通市值(单位:亿元)     类型:float
+    'total_market_value': 3887.01  # 总市值(单位:亿元)       类型:float
 }
 ```

@@ -33,4 +33,5 @@ setuptools.setup(
     url="https://github.com/YangzhenZhao/fastquotes",
     install_requires=reqs("requirements.txt"),
     packages=setuptools.find_packages(),
+    include_package_data=True,
 )

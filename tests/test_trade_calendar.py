@@ -25,3 +25,12 @@ def test_pre_trade_date():
     assert pre_date is None
     pre_date = calendar.pre_trade_date("19901214")
     assert pre_date is None
+
+
+def test_next_trade_date():
+    next_date = calendar.next_trade_date("20210313")
+    assert next_date == "20210315"
+    next_date = calendar.next_trade_date("20201113")
+    assert next_date == "20201116"
+    next_date = calendar.next_trade_date("20201004")
+    assert next_date == "20201009"

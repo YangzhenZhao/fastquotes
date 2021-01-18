@@ -36,6 +36,23 @@ print(calendar.pre_trade_date("19901214"))
 None
 ```
 
+### 查询下一个交易日
+
+```py
+import fastquotes
+
+calendar = fastquotes.TradeCalendar()
+print(calendar.next_trade_date("20201115"))
+print(calendar.next_trade_date("19960301"))
+```
+
+输出结果:
+
+```
+20201116
+19960304
+```
+
 ### 交易日列表   
 
 

@@ -1,4 +1,4 @@
-from bisect import bisect_left
+from bisect import bisect_left, bisect_right
 from datetime import datetime
 from typing import Optional
 
@@ -21,6 +21,13 @@ class TradeCalendar:
         date = _format_date(date)
         idx = bisect_left(self._trade_days, date) - 1
         if idx == -1:
+            return None
+        return self._trade_days[idx]
+
+    def next_trade_date(self, date=None) -> Optional[str]:
+        date = _format_date(date)
+        idx = bisect_right(self._trade_days, date)
+        if idx == len(self._trade_days):
             return None
         return self._trade_days[idx]
 

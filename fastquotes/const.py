@@ -12,5 +12,5 @@ HEADERS = {
     ),
 }
 TRADE_DAYS_FILE_PATH = os.path.realpath(
-    os.path.join(os.path.dirname(__file__), "../static/trade_days.txt")
+    os.path.join(os.path.dirname(__file__), "static/trade_days.txt")
 )

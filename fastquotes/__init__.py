@@ -16,5 +16,5 @@ from .to_hans import to_hans, to_hans_amount
 from .trade_calendar import TradeCalendar
 from .utils import exchange_prefix
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __author__ = "nocilantro"

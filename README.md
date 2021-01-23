@@ -11,10 +11,8 @@
 
 ### Installation
 
-直接安装: `pip install quotes`       
-安装最新版本(推荐): `pip install quotes==最新版本`
-
-卸载: `pip uninstall fastquotes -y`
+安装: `pip install --upgrade fastquotes`        
+卸载: `pip uninstall fastquotes -y`  
 
 ### Examples
 
@@ -45,3 +43,30 @@ Python 3.6+
 
 - <a href="https://github.com/jindaxiang/akshare" target="_blank">https://github.com/jindaxiang/akshare</a>   
 - <a href="https://github.com/shidenggui/easyquotation" target="_blank">https://github.com/shidenggui/easyquotation</a>   
+
+### Cli
+
+```
+Usage: fquotes [OPTIONS]
+
+Options:
+  -c, --codes TEXT  Set fund code to get profit.
+  -i, --intro TEXT  Set fund code to get intro.
+  --help            Show this message and exit.
+```
+
+#### Examples
+
+```
+$ fquotes -i 110011
+{'基金代码': '110011', '基金简称': '易方达中小盘混合', '基金类型': '混合型'}
+
+$ fquotes -i 110011 -i 163808
+{'基金代码': '110011', '基金简称': '易方达中小盘混合', '基金类型': '混合型'}
+{'基金代码': '163808', '基金简称': '中银中证100指数增强', '基金类型': '股票指数'}
+
+$ fquotes -c 110011 -c 481010 -c 570001
+110011 2021-01-22 0.010017025810292735
+481010 2021-01-22 0.015934207144692847
+570001 2021-01-22 0.0156294563915349
+```

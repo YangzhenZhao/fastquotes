@@ -4,9 +4,7 @@
 
 ## 安装
 
-`pip install fastquotes`     
-
-安装最新版: `pip install fastquotes==最新版本号`
+安装: `pip install --upgrade fastquotes`
 
 验证安装:
 

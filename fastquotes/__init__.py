@@ -1,6 +1,7 @@
 from fastquotes.async_quotes.async_sina import AsyncSinaQuote
 from fastquotes.async_quotes.async_tencent import AsyncTencentQuote
-from fastquotes.fund import fund_list
+from fastquotes.fund import etf_list, fund_intro_dict
+from fastquotes.fund.daily import fund_real_time_dict
 from fastquotes.quotes.sina import SinaQuote
 from fastquotes.quotes.tencent import TencentQuote
 
@@ -16,5 +17,5 @@ from .to_hans import to_hans, to_hans_amount
 from .trade_calendar import TradeCalendar
 from .utils import exchange_prefix
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 __author__ = "nocilantro"

@@ -15,6 +15,7 @@ Welcome to fastquotes's documentation!
    async_quotes
    tick
    stock_list
+   fund
    calendar
    hans
    utils

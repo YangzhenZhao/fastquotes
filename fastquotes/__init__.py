@@ -1,7 +1,7 @@
 from fastquotes.async_quotes.async_sina import AsyncSinaQuote
 from fastquotes.async_quotes.async_tencent import AsyncTencentQuote
 from fastquotes.fund import etf_list, fund_intro_dict
-from fastquotes.fund.daily import fund_real_time_dict
+from fastquotes.fund.daily import fund_latest_profit_dict, fund_real_time_dict
 from fastquotes.quotes.sina import SinaQuote
 from fastquotes.quotes.tencent import TencentQuote
 

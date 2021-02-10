@@ -11,6 +11,10 @@ HEADERS = {
         "Safari/537.36"
     ),
 }
+CUSTOM_HEADER = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
+}
 TRADE_DAYS_FILE_PATH = os.path.realpath(
     os.path.join(os.path.dirname(__file__), "static/trade_days.txt")
 )

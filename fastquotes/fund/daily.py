@@ -4,16 +4,11 @@ from typing import Optional
 import demjson
 import requests
 
+from ..const import CUSTOM_HEADER
 from ..trade_calendar import TradeCalendar
 
 
 def fund_real_time_dict() -> dict:
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-            " (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
-        )
-    }
     url = "http://fund.eastmoney.com/Data/Fund_JJJZ_Data.aspx"
     params = {
         "t": "1",
@@ -27,7 +22,7 @@ def fund_real_time_dict() -> dict:
         "atfc": "",
         "onlySale": "0",
     }
-    res = requests.get(url, params=params, headers=headers)
+    res = requests.get(url, params=params, headers=CUSTOM_HEADER)
     text = res.text.strip("var db=")
     data_dict = demjson.decode(text)
     day, pre_day = data_dict["showday"]
@@ -56,14 +51,14 @@ def fund_latest_profit_dict(codes: list = None) -> Optional[dict]:
     if codes is None:
         real_time_list = list(real_time_dict.items())
     else:
-        real_time_list = [[code, real_time_dict[code]] for code in codes]
+        real_time_list = [(code, real_time_dict[code]) for code in codes]
     calendar = TradeCalendar()
     is_trade_date = calendar.is_trade_date()
     today_str = datetime.now().strftime("%Y-%m-%d")
     profit_dict = {}
     for code, msg in real_time_list:
         if _is_valid_profit(msg, is_trade_date, today_str):
-            profit = float(msg["单位净值"]) / float(msg["上个交易日单位净值"]) - 1
+            profit: Optional[float] = float(msg["单位净值"]) / float(msg["上个交易日单位净值"]) - 1
         else:
             profit = None
         profit_dict[code] = profit

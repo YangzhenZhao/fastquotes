@@ -32,7 +32,7 @@ version_path = os.path.abspath(
 )
 with open(version_path) as f:
     content = f.read()
-    release = re.search('__version__ = "(.*?)"', content).group(1)
+    release = re.search('__version__ = "(.*?)"', content).group(1)  # type: ignore
 
 
 # -- General configuration ---------------------------------------------------
@@ -56,7 +56,7 @@ language = "zh"
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = []  # type: ignore
 
 source_suffix = [".rst", ".md"]
 

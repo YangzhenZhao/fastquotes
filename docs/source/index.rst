@@ -17,5 +17,6 @@ Welcome to fastquotes's documentation!
    stock_list
    fund
    calendar
+   coin
    hans
    utils

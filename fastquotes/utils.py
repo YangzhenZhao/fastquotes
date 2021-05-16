@@ -109,3 +109,22 @@ def format_stock_codes(codes: list) -> list:
     if codes[0][0].isdigit():
         return [exchange_prefix(code) + code for code in codes]
     return codes
+
+
+def get_day_of_week(year: int, month: int, day: int) -> int:
+    """
+    0表示星期日,1-6表示星期一到星期六
+    """
+    if month in (1, 2):
+        year -= 1
+        month += 12
+    return (
+        day
+        + 2 * month
+        + 3 * (month + 1) // 5
+        + year
+        + year // 4
+        - year // 100
+        + year // 400
+        + 1
+    ) % 7

@@ -6,10 +6,13 @@ import requests
 from ..const import CUSTOM_HEADER
 
 
-def latest_one_year_data(code: str) -> list:
+def latest_year_data(code: str, latest_year: int) -> list:
+    """
+    lastest_year: 1、3、5
+    """
     url = (
         f"http://www.csindex.com.cn/zh-CN/indices/index-detail/{code}?"
-        "earnings_performance=1%E5%B9%B4&data_type=json"
+        f"earnings_performance={latest_year}%E5%B9%B4&data_type=json"
     )
     text = requests.get(url, headers=CUSTOM_HEADER).text
     res_list = []

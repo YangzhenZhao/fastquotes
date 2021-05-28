@@ -44,3 +44,17 @@ print(len(etf_l), etf_l[:10])
 ```
 383 ['sz159999', 'sz159998', 'sz159997', 'sz159996', 'sz159995', 'sz159994', 'sz159993', 'sz159992', 'sz159991', 'sz159990']
 ```
+
+### 基金规模
+
+
+```py
+import fastquotes
+print(fastquotes.fund.daily.fund_size("110011"))
+```
+
+输出结果:   
+
+```
+314.64
+```

@@ -65,6 +65,21 @@ def fund_latest_profit_dict(codes: list = None) -> Optional[dict]:
     return profit_dict
 
 
+def fund_size(code: str) -> Optional[float]:
+    content = requests.get(f"http://fund.eastmoney.com/{code}.html").text
+    content = content.encode("ISO-8859-1").decode("utf-8")
+    if "亿元" not in content:
+        return None
+    key_word = "基金规模</a>："
+    pos = content.find(key_word)
+    size_str = ""
+    for i in range(pos + len(key_word), len(content)):
+        if content[i:].startswith("亿元"):
+            break
+        size_str += content[i]
+    return float(size_str)
+
+
 def _is_valid_profit(
     item: dict,
     is_trade_date: bool,

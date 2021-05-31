@@ -1,6 +1,8 @@
+import asyncio
 from datetime import datetime
 from typing import Optional
 
+import aiohttp
 import demjson
 import requests
 
@@ -78,6 +80,33 @@ def fund_size(code: str) -> Optional[float]:
             break
         size_str += content[i]
     return float(size_str)
+
+
+async def fund_size_dict(codes: list):
+    res_dic = {}
+    async with aiohttp.ClientSession() as session:
+
+        async def set_value(code: str):
+            async with await session.get(
+                f"http://fund.eastmoney.com/{code}.html", headers=CUSTOM_HEADER
+            ) as response:
+                content = await response.text()
+                key_word = "基金规模</a>："
+                pos = content.find(key_word)
+                size_str = ""
+                for i in range(pos + len(key_word), len(content)):
+                    if content[i:].startswith("亿元"):
+                        break
+                    if content[i].isdigit() or content[i] == ".":
+                        size_str += content[i]
+                    else:
+                        return
+                if size_str == "":
+                    return
+                res_dic[code] = float(size_str)
+
+        await asyncio.wait([set_value(code) for code in codes])
+    return res_dic
 
 
 def _is_valid_profit(

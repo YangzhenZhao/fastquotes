@@ -87,3 +87,40 @@ print(list(ans.items())[:10])
 2021-05-31 14:56:36.597977 5350 314.64
 [('008051', 0.12), ('519002', 18.69), ('008038', 0.3), ('900011', 5.45), ('900099', 130.05), ('160212', 12.2), ('000043', 9.41), ('008037', 0.48), ('007643', 14.31), ('900089', 49.98)]
 ```
+
+因为是从网页爬取的，不是很稳定，可以使用如下方式或取尽可能多的信息:
+
+```py
+from fastquotes import fund
+
+size_dict = {}
+leave_codes = set(all_codes)
+while True:
+    print(len(leave_codes))
+    size_dict_tmp = await fund.daily.fund_size_dict(list(leave_codes))
+    if not size_dict_tmp:
+        break
+    for code, value in size_dict_tmp.items():
+        size_dict[code] = value
+        leave_codes.remove(code)
+    await asyncio.sleep(5)
+```
+
+### 基金公司  
+
+
+```py
+from fastquotes import fund
+
+company_dict = {}
+leave_codes = set(all_codes)
+while True:
+    print(len(leave_codes))
+    company_dict_tmp = await fund.daily.fund_company_dict(list(leave_codes))
+    if not company_dict_tmp:
+        break
+    for code, value in company_dict_tmp.items():
+        company_dict[code] = value
+        leave_codes.remove(code)
+    await asyncio.sleep(5)
+```

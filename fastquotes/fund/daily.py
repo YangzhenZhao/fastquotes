@@ -144,7 +144,7 @@ def _is_valid_profit(
     is_trade_date: bool,
     today_str: str,
 ) -> bool:
-    if item["单位净值"] == "":
+    if item["单位净值"] == "" or item["上个交易日单位净值"] == "":
         return False
     if is_trade_date and today_str != item["update_date"]:
         return False

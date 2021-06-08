@@ -10,13 +10,13 @@ from ..const import CUSTOM_HEADER
 def get_dividend(msg: str) -> Optional[float]:
     if not msg:
         return None
-    l, r = 0, len(msg) - 1
-    while not msg[l].isdigit() or not msg[r].isdigit():
-        if not msg[l].isdigit():
-            l += 1
-        if not msg[r].isdigit():
-            r -= 1
-    return float(msg[l : r + 1])
+    left, right = 0, len(msg) - 1
+    while not msg[left].isdigit() or not msg[right].isdigit():
+        if not msg[left].isdigit():
+            left += 1
+        if not msg[right].isdigit():
+            right -= 1
+    return float(msg[left : right + 1])
 
 
 def fund_history_data(fund_code: str) -> list:

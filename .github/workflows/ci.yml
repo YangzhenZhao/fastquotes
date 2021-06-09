@@ -25,6 +25,7 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install flake8
         python -m pip install types-requests
+        python3 -m pip install types-click
         python -m pip install mypy
     - name: Lint with flake8
       run: |

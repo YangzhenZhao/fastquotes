@@ -3,4 +3,3 @@ aiohttp
 xlrd==1.2.0
 click
 demjson
-types-requests

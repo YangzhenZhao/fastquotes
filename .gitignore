@@ -10,3 +10,5 @@ dist/
 
 # Sphinx documentation
 docs/_build/
+
+tmp/

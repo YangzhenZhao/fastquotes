@@ -12,6 +12,8 @@ def test_judge_trade_date():
     assert is_trade_date
     is_trade_date = calendar.is_trade_date("20210213")
     assert not is_trade_date
+    is_trade_date = calendar.is_trade_date("20220129")
+    assert not is_trade_date
 
 
 def test_pre_trade_date():
